@@ -1,10 +1,12 @@
 const express = require('express')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
+const dotenv = require('dotenv')
 const PORT = 8000
 const app = express()
 const db = require('./config/mongoose');
 const passport = require('./config/passportLocalStrategy')
+dotenv.config()
 
 var corsOptions = {
     origin: 'http://localhost:3000',
