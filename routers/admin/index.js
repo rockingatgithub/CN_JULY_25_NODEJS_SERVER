@@ -9,7 +9,8 @@ router.post('/', async (req, res) => {
         const admin = await Admin.create(req.body)
         return res.status(200).json({
             message: "Admin created!",
-            data: admin
+            data: admin,
+            isAdmin: true
         })
 
     } catch(error) {

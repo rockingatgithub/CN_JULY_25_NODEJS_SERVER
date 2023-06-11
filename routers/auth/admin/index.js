@@ -15,7 +15,8 @@ router.post('/', async  (req, res) => {
         res.cookie('user', admin.id)
         return res.status(200).json({
             message: "admin fetched!",
-            data: admin
+            data: admin,
+            isAdmin: true,
         })
     }
 
@@ -38,7 +39,8 @@ router.post('/jwt', async  (req, res) => {
         res.cookie('user', token)
         return res.status(200).json({
             message: "admin fetched!",
-            data: admin
+            data: admin,
+            isAdmin: true
         })
     }
 
@@ -93,7 +95,8 @@ router.post('/google', async (req, res) => {
     if(admin) {
         return res.status(200).json({
             message: "admin fetched!",
-            data: admin
+            data: admin,
+            isAdmin: true
         })
     }
 
@@ -105,7 +108,8 @@ router.post('/google', async (req, res) => {
 
     return res.status(200).json({
         message: "admin fetched!",
-        data: admin
+        data: admin,
+        isAdmin: true
     })
 
 })

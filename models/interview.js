@@ -10,6 +10,10 @@ const interviewSchema = new mongoose.Schema({
     description: {
         type: String,
     },
+    role: {
+        type: String,
+        required: true
+    },
     candidates: [{
 
         candidate: {
