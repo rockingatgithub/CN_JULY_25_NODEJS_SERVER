@@ -37,10 +37,10 @@ router.post('/jwt', async  (req, res) => {
 
         const token = jwt.sign(student.id, process.env.JWT_KEY)
 
-        res.cookie('user', token)
         return res.status(200).json({
             message: "Student fetched!",
-            data: student
+            data: student,
+            token
         })
     }
 
@@ -92,10 +92,13 @@ router.post('/google', async (req, res) => {
 
     let student = await Student.findOne({ email: email })
 
+    let token = jwt.sign(student.id, process.env.JWT_KEY)
+
     if(student) {
         return res.status(200).json({
             message: "Student fetched!",
-            data: student
+            data: student,
+            token
         })
     }
 
@@ -105,9 +108,12 @@ router.post('/google', async (req, res) => {
         password
     })
 
+    token = jwt.sign(student.id, process.env.JWT_KEY)
+
     return res.status(200).json({
         message: "Student fetched!",
-        data: student
+        data: student,
+        token
     })
 
 })

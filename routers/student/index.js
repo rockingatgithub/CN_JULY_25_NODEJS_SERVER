@@ -1,4 +1,5 @@
 const express = require('express')
+const jwt = require('jsonwebtoken')
 const { authenticate2, authenticateLocal } = require('../../middlewares')
 const Student = require('../../models/student')
 const router = express.Router()
@@ -24,9 +25,12 @@ router.post('/', async (req, res) => {
 
     const student = await Student.create(req.body)
 
+    let token = jwt.sign(student.id, process.env.JWT_KEY)
+
     return res.status(200).json({
         message: "Student added",
-        data: student
+        data: student,
+        token
     }) ;
 
 })

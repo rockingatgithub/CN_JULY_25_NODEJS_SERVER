@@ -36,11 +36,11 @@ router.post('/jwt', async  (req, res) => {
 
         const token = jwt.sign(admin.id, 'mykey')
 
-        res.cookie('user', token)
         return res.status(200).json({
             message: "admin fetched!",
             data: admin,
-            isAdmin: true
+            isAdmin: true,
+            token
         })
     }
 
@@ -92,11 +92,14 @@ router.post('/google', async (req, res) => {
 
     let admin = await Admin.findOne({ email: email })
 
+    let token = jwt.sign(admin.id, 'mykey')
+
     if(admin) {
         return res.status(200).json({
             message: "admin fetched!",
             data: admin,
-            isAdmin: true
+            isAdmin: true,
+            token
         })
     }
 
@@ -106,10 +109,13 @@ router.post('/google', async (req, res) => {
         password
     })
 
+    token = jwt.sign(admin.id, 'mykey')
+
     return res.status(200).json({
         message: "admin fetched!",
         data: admin,
-        isAdmin: true
+        isAdmin: true,
+        token
     })
 
 })

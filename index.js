@@ -5,7 +5,8 @@ const dotenv = require('dotenv')
 const PORT = 8000
 const app = express()
 const db = require('./config/mongoose');
-const passport = require('./config/passportLocalStrategy')
+// const passport = require('./config/passportLocalStrategy')
+const passport = require('./config/passportJWTStrategy')
 dotenv.config()
 
 var corsOptions = {
